@@ -6,12 +6,13 @@
  */
 package com.github.mybatis.fl.test;
 
+import com.github.mybatis.fl.entity.BasisInfo;
+import com.github.mybatis.fl.util.EntityInfoUtil;
+import com.github.mybatis.fl.util.Generator;
+import com.github.mybatis.fl.util.MySqlToJavaUtil;
+
 import java.sql.SQLException;
 import java.util.Date;
-import com.github.flying.cattle.mdg.entity.BasisInfo;
-import com.github.flying.cattle.mdg.util.EntityInfoUtil;
-import com.github.flying.cattle.mdg.util.Generator;
-import com.github.flying.cattle.mdg.util.MySqlToJavaUtil;
 
 /**
  * Copyright: Copyright (c) 2019
@@ -23,21 +24,21 @@ import com.github.flying.cattle.mdg.util.MySqlToJavaUtil;
  * 源码地址：https://gitee.com/flying-cattle/mybatis-dsc-generator
  * </P>
  */
-public class MyGenerator {
+public class TestMain {
 	// 基础信息：项目名、作者、版本
-	public static final String PROJECT = "wallet-manage"; 
-	public static final String AUTHOR = "BianPeng";
+	public static final String PROJECT = "viewwork2019";
+	public static final String AUTHOR = "HuangJunWei";
 	public static final String VERSION = "V1.0";
 	// 数据库连接信息：连接URL、用户名、秘密、数据库名
-	public static final String URL = "jdbc:mysql://127.0.0.1:3306/earn_knife?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&failOverReadOnly=false&useSSL=true&serverTimezone=UTC";
+	public static final String URL = "jdbc:mysql://47.94.90.33:3306/hjwdb?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&failOverReadOnly=false&useSSL=true&serverTimezone=UTC";
 	public static final String NAME = "root";
-	public static final String PASS = "pwd2020";
-	public static final String DATABASE = "earn_knife";
+	public static final String PASS = "123456";
+	public static final String DATABASE = "hjwdb";
 	// 类信息：类名、对象名（一般是【类名】的首字母小些）、类说明、时间
-	public static final String CLASSNAME = "Platform";
-	public static final String TABLE = "platform";
-	public static final String CLASSCOMMENT = "平台申请";
-	public static final String TIME = "2019年5月5日";
+	public static final String CLASSNAME = "User";
+	public static final String TABLE = "user";
+	public static final String CLASSCOMMENT = "用户";
+	public static final String TIME = "2019.12.20";
 	public static final String AGILE = new Date().getTime() + "";
 	// 路径信息，分开路径方便聚合工程项目，微服务项目
 	public static final String ENTITY_URL = "com.buybit.wm.entity";
@@ -56,7 +57,8 @@ public class MyGenerator {
 		bi.setEntityComment(CLASSCOMMENT);
 		try {
 			bi = EntityInfoUtil.getInfo(bi);
-			String fileUrl = "E:\\a_item_work\\wallet\\wallet-manage\\wallet-manage-web\\src\\main\\java\\";// 生成文件存放位置
+			//D:\\ideaWorking\\upc_shuqi_shixi\\mybatis-generator2\\src\\main\\java\\
+			String fileUrl = "D:\\ideaWorking\\upc_shuqi_shixi\\mybatis-generator2\\src\\main\\java\\";// 生成文件存放位置
 			String aa1 = Generator.createEntity(fileUrl, bi).toString();
 
 			String aa2 = Generator.createDao(fileUrl, bi).toString();
@@ -67,7 +69,6 @@ public class MyGenerator {
 
 			// 是否创建swagger配置文件
 			// String aa7 = Generator.createSwaggerConfig(fileUrl, bi).toString();
-
 			System.out.println(aa1);
 			System.out.println(aa2);
 			System.out.println(aa3);

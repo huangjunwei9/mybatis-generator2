@@ -46,10 +46,14 @@ public class EntityInfoUtil {
 				String comment = executeQuery.getString(3);
 				PropertyInfo ci=new PropertyInfo();
 				ci.setColumn(column);
-				if (jdbcType.equalsIgnoreCase("int")) {
+				if (jdbcType.equalsIgnoreCase("int") || jdbcType.equalsIgnoreCase("bigint") || jdbcType.equalsIgnoreCase("tinyint")) {
 					ci.setJdbcType("Integer");
-				}else if (jdbcType.equalsIgnoreCase("datetime")) {
+				}else if (jdbcType.equalsIgnoreCase("datetime") || jdbcType.equalsIgnoreCase("timestamp")) {
 					ci.setJdbcType("timestamp");
+				}else if (jdbcType.equalsIgnoreCase("varchar") || jdbcType.equalsIgnoreCase("text")) {
+					ci.setJdbcType("String");
+				}else if (jdbcType.equalsIgnoreCase("decimal") ) {
+					ci.setJdbcType("BigDecimal");
 				}else {
 					ci.setJdbcType(jdbcType);
 				}

@@ -49,12 +49,14 @@ public class Generator {
 	//③创建mapper配置文件
 	public static JsonResult createDaoImpl(String url,BasisInfo bi) {
 		String fileUrl= getGeneratorFileUrl(url, bi.getMapperUrl(), bi.getEntityName(), DAO_IMPL);
-		List<PropertyInfo> list=bi.getCis();
+		List<PropertyInfo> list = bi.getCis();
 		String agile="";
 		for (PropertyInfo propertyInfo : list) {
-			agile=agile+propertyInfo.getColumn()+", ";
+			agile = agile + propertyInfo.getColumn()+", ";
 		}
-		agile=agile.substring(0, agile.length()-2);
+		if(agile.length() >= 2) {
+			agile = agile.substring(0, agile.length() - 2);
+		}
 		bi.setAgile(agile);
 		return FreemarkerUtil.createFile(bi, "mapper.ftl", fileUrl);
 	}
