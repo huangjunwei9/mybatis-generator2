@@ -7,8 +7,8 @@
 package com.buybit.wm.dao;
 
 import java.util.List;
-import org.apache.ibatis.annotations.Mapper;
 import com.buybit.wm.entity.User;
+import org.mapstruct.Mapper;
 
 /**   
  *  

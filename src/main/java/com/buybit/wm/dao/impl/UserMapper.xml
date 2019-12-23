@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.buybit.wm.dao.UserDao">
 	<resultMap id="BaseResultMap" type="com.buybit.wm.entity.User">
-	<id column="id" jdbcType="INTEGER" property="id" />
+	<id column="id" jdbcType="LONG" property="id" />
 	<id column="username" jdbcType="STRING" property="username" />
 	<id column="password" jdbcType="STRING" property="password" />
 	<id column="realname" jdbcType="STRING" property="realname" />
@@ -13,29 +13,30 @@
 	<id column="email" jdbcType="STRING" property="email" />
 	<id column="phone" jdbcType="STRING" property="phone" />
 	<id column="status" jdbcType="INTEGER" property="status" />
-	<id column="operate_time" jdbcType="TIMESTAMP" property="operateTime" />
+	<id column="operate_time" jdbcType="DATE" property="operateTime" />
 	<id column="operate_ip" jdbcType="STRING" property="operateIp" />
-	<id column="operator" jdbcType="INTEGER" property="operator" />
-	<id column="del_flag" jdbcType="INTEGER" property="delFlag" />
+	<id column="operator" jdbcType="LONG" property="operator" />
+	<id column="del_flag" jdbcType="LONG" property="delFlag" />
 	<id column="remark" jdbcType="STRING" property="remark" />
 	</resultMap>
+
 	<sql id="Base_Column_List">
 	id, username, password, realname, identity_sign, college_name, major_name, class_name, email, phone, status, operate_time, operate_ip, operator, del_flag, remark
 	</sql>
-	<!-- ²éÑ¯ -->
+	<!-- ï¿½ï¿½Ñ¯ -->
 	<select id="selectByPrimaryKey" parameterType="java.lang.Long"
 		resultMap="BaseResultMap">
 		select
 		<include refid="Base_Column_List" />
 		from user
-		where id = #{id,jdbcType=INTEGER}
+		where id = #{id,jdbcType=LONG}
 	</select>
-	<!-- É¾³ý -->
+	<!-- É¾ï¿½ï¿½ -->
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
 		delete from user
-		where id = #{id,jdbcType=INTEGER}
+		where id = #{id,jdbcType=LONG}
 	</delete>
-	<!-- Ñ¡ÔñÌí¼Ó -->
+	<!-- Ñ¡ï¿½ï¿½ï¿½ï¿½ï¿½ -->
 	<insert id="insertSelective" parameterType="com.buybit.wm.entity.User">
 		<selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
 			SELECT
@@ -94,7 +95,7 @@
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
 			<if test="id != null">
-				#{id,jdbcType=INTEGER},
+				#{id,jdbcType=LONG},
 			</if>
 			<if test="username != null">
 				#{username,jdbcType=STRING},
@@ -127,28 +128,28 @@
 				#{status,jdbcType=INTEGER},
 			</if>
 			<if test="operateTime != null">
-				#{operateTime,jdbcType=TIMESTAMP},
+				#{operateTime,jdbcType=DATE},
 			</if>
 			<if test="operateIp != null">
 				#{operateIp,jdbcType=STRING},
 			</if>
 			<if test="operator != null">
-				#{operator,jdbcType=INTEGER},
+				#{operator,jdbcType=LONG},
 			</if>
 			<if test="delFlag != null">
-				#{delFlag,jdbcType=INTEGER},
+				#{delFlag,jdbcType=LONG},
 			</if>
 			<if test="remark != null">
 				#{remark,jdbcType=STRING},
 			</if>
 		</trim>
 	</insert>
-	<!-- Ñ¡ÔñÐÞ¸Ä -->
+	<!-- Ñ¡ï¿½ï¿½ï¿½Þ¸ï¿½ -->
 	<update id="updateByPrimaryKeySelective" parameterType="com.buybit.wm.entity.User">
 		update user
 		<set>
 			<if test="id != null">
-				id = #{id,jdbcType=INTEGER},
+				id = #{id,jdbcType=LONG},
 			</if>
 			<if test="username != null">
 				username = #{username,jdbcType=STRING},
@@ -181,24 +182,24 @@
 				status = #{status,jdbcType=INTEGER},
 			</if>
 			<if test="operateTime != null">
-				operate_time = #{operateTime,jdbcType=TIMESTAMP},
+				operate_time = #{operateTime,jdbcType=DATE},
 			</if>
 			<if test="operateIp != null">
 				operate_ip = #{operateIp,jdbcType=STRING},
 			</if>
 			<if test="operator != null">
-				operator = #{operator,jdbcType=INTEGER},
+				operator = #{operator,jdbcType=LONG},
 			</if>
 			<if test="delFlag != null">
-				del_flag = #{delFlag,jdbcType=INTEGER},
+				del_flag = #{delFlag,jdbcType=LONG},
 			</if>
 			<if test="remark != null">
 				remark = #{remark,jdbcType=STRING},
 			</if>
 		</set>
-		where id = #{id,jdbcType=Integer}
+		where id = #{id,jdbcType=Long}
 	</update>
-	<!-- ×éºÏÌõ¼þ²éÑ¯ -->
+	<!-- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¯ -->
 	<select id="queryUserList" parameterType="com.buybit.wm.entity.User"
 		resultMap="BaseResultMap">
 		select
@@ -206,7 +207,7 @@
 		from user
 		<where>
 			<if test="id != null">
-				id = #{id,jdbcType=INTEGER}
+				id = #{id,jdbcType=LONG}
 			</if>
 			<if test="username  != null">
 				AND username = #{username ,jdbcType=STRING}
@@ -239,16 +240,16 @@
 				AND status = #{status ,jdbcType=INTEGER}
 			</if>
 			<if test="operateTime  != null">
-				AND operate_time = #{operateTime ,jdbcType=TIMESTAMP}
+				AND operate_time = #{operateTime ,jdbcType=DATE}
 			</if>
 			<if test="operateIp  != null">
 				AND operate_ip = #{operateIp ,jdbcType=STRING}
 			</if>
 			<if test="operator  != null">
-				AND operator = #{operator ,jdbcType=INTEGER}
+				AND operator = #{operator ,jdbcType=LONG}
 			</if>
 			<if test="delFlag  != null">
-				AND del_flag = #{delFlag ,jdbcType=INTEGER}
+				AND del_flag = #{delFlag ,jdbcType=LONG}
 			</if>
 			<if test="remark  != null">
 				AND remark = #{remark ,jdbcType=STRING}

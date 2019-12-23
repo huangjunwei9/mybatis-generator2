@@ -29,7 +29,7 @@ import lombok.AllArgsConstructor;
 @NoArgsConstructor
 public class User implements Serializable {
 
-	private static final long serialVersionUID = 1576849971777L;
+	private static final long serialVersionUID = 1576893969271L;
 	
 	@ApiModelProperty(name = "id" , value = "")
 	private Long id;
